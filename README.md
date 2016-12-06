@@ -15,14 +15,14 @@ and provide your advisor's name?:
     I have been looking at building a personal website for tracking Pathfinder Society characters, and am looking at various options. Typically my goto web development language is c# and .net, but I'd like to give python a try and I like the look of Django.
 	
 Give a script (a sequence of actions, not Python code) of a session a user might have with your project.:
-User Story 1:   Register an account
+    User Story 1:   Register an account
         1.  Open web browser and navigate to dsc.com (or other url).
         2.  Select register user
         3.  Pick username and enter password
         3a. If username is already taken, the user will be informed they must pick a new username.
 	optional step 4: Request the site admin to mark the new account as authorized to run code.  Failure to do this step results in only being able to compile projects.
 
-User Story 2:  Create public project with public startup file and private module file
+    User Story 2:  Create public project with public startup file and private module file
         1.  Open web browser and navigate to dsc.com (or other url).
         2.  Log in with existing account
         3.  Create a new project, set project name, description, and mark as public
