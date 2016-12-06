@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "dsc", "dsc\dsc.pyproj", "{F7870925-4148-4E7D-A517-47F11A822D85}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DjangoSourceControlServer", "server\DjangoSourceControlServer.pyproj", "{3DDA6737-6471-4180-A4E3-807549B53102}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F7870925-4148-4E7D-A517-47F11A822D85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7870925-4148-4E7D-A517-47F11A822D85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DDA6737-6471-4180-A4E3-807549B53102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DDA6737-6471-4180-A4E3-807549B53102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

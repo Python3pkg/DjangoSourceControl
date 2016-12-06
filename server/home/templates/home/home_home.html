@@ -1,0 +1,44 @@
+﻿{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+
+        <div class="jumbotron">
+            {% if user.is_authenticated %}
+            <h1>Hello, {{user}}</h1>
+            {% endif %}
+
+            {% if not user.is_authenticated %}
+
+            <h1>Hello, Unregistered</h1>
+            {% endif %}
+            <p>You are on the home dashboard.</p>
+
+
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Available DjpStudios Projects
+        </h3>
+    </div>
+    <div class="panel-body">
+        <ul>
+            <li><a href="/djangosourcecontrol">Django Source Control </a></li>
+            {% if user.is_superuser%}
+            <li><a href="/djangosourcecontrol/api/project">Project Api</a></li>
+            <li><a href="/djangosourcecontrol/api/projectfile">ProjectFile Api</a></li>
+            <li><a href="/djangosourcecontrol/api/projectfileversion">ProjectFileVersion Api</a></li>
+            <li><a href="/admin">Admin page</a></li>
+            {% endif %}
+
+        </ul>
+    </div>
+</div>
+
+
+{% endblock %}
+
