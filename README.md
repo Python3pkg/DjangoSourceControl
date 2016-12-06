@@ -4,6 +4,7 @@ DjangoSourceControl is a simple Django app to create Web-based Python files and 
 Project Proposal:
 ------------------------------
 Author: Daniel Pepka
+
 project name: DjangoSourceControl
 		
 brief description:
