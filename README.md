@@ -5,7 +5,7 @@ Project Proposal:
 ------------------------------
 Author: Daniel Pepka
 
-project name: DjangoSourceControl
+Project Name: DjangoSourceControl
 		
 brief description:
     Django Source Control is a website that lets you log in, create public or private python projects which are collections of files.  Each time you save a file a new version is created which is then compiled and displaying any errors. Each version is retained preserving a history of each previous save. Then using the web page you can revert to a previous version at any time. If authorized, you can run the script directly on the server, otherwize a download as zip 
