@@ -11,7 +11,8 @@ open a terminal and navigate to %where you put the dsc files%/DjangoSourceContro
 
 ### optional steps if you already haven't installed python3
 
-	sudo apt-get install python3 sudo apt-get install python3-pip
+	sudo apt-get install python3
+	sudo apt-get install python3-pip
 
 ### optional update pip
 
@@ -23,7 +24,11 @@ open a terminal and navigate to %where you put the dsc files%/DjangoSourceContro
 
 ### Make the folder and create our virtualenv
 
-	virtualenv serverenv source serverenv/bin/activate pip3 install django pip3 install djangorestframework pip3 install djangosourcecontrol
+	virtualenv serverenv 
+	source serverenv/bin/activate 
+	pip3 install django 
+	pip3 install djangorestframework 
+	pip3 install djangosourcecontrol
 
 ### Finally run the server
 
@@ -42,17 +47,16 @@ jamie:jello
 
 ## The site consists of serveral pages:
 
-http://127.0.0.1:8000/ or http://127.0.0.1:8000/home/
-
+### http://127.0.0.1:8000/ or http://127.0.0.1:8000/home/
 The home page, contains different links depending on superuser status.
-http://127.0.0.1:8000/login/
 
+### http://127.0.0.1:8000/login/
 The login page, contains a link to the register page
-http://127.0.0.1:8000/home/register
 
+### http://127.0.0.1:8000/home/register
 The registration page where new users are created with the can_add_permission by default
-http://127.0.0.1:8000/djangosourcecontrol/
 
+### http://127.0.0.1:8000/djangosourcecontrol/
 The project list page. Displays all public projects and projects created by the logged in user.
 Note: superuser can see all projects
 Note: users with the can_add_project permission, have an additonal button which spawns a modal to create new projects.
@@ -62,8 +66,8 @@ PK is an integer that represents a projects primary key.
 Projects display contain a collection of files as well as each file containing a collection of versions. This page allows for the creation of new files, and new versions. The project and files can each be marked as private, limits visibility to only the owner of the project and superusers.
 Each file may have the most recent version compiled and the results displayed.
 Each project may mark one file as the startup, which if the user has the can_run_project permission can have its startup file executed and the results displayed.
-http://127.0.0.1:8000/admin/
 
+### http://127.0.0.1:8000/admin/
 The admin page allows manual manipulation of the django users, groups, projects, files, and versions.
 NOTE: There is currently no way to remove a project, file, or version from the public controls. Only a superuser may remove project, file, or versions and it must be done through the admin pages.
 
