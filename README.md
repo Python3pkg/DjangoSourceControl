@@ -63,17 +63,63 @@ What other modules will your project use?:
     Django, and django-rest-framework
 
 Describe your project in greater detail. What would you say to someone to get them to use (or buy) your project?:
-DjangoSourceControl is a website written in Django (https://www.djangoproject.com/) with a sqllite3 database created using the built in Django ORM. The purpose of the website is to provide end users the ability to log in to and create a project that will allow the user to manage a collection of python scripts. One file would be marked as the startup file, so when you tell the project to compiled or run it will run that file.  You will also have the ability to mark projects and files as public or private thus preventing anyone other than the owner access to the file.  If a file is in a public project but marked as private you will not be able to view the contents of that file, but you will be able to still include python code from the private module.  This way you can create semi public code that people can use but not see the implementation.  And finally all projects can be downloaded compressed as a zip file which can then be extracted and run locally. 
+DjangoSourceControl is a website written in Django (https://www.djangoproject.com/) with a sqllite3 database created using the built in Django ORM. The purpose of the website is to provide end users the ability to log in to and create a project that will allow the user to manage a collection of python scripts. One file would be marked as the startup file, and would be used when a project is requsted to be ran or compiled.  Both Projects and file can be either public or private.  If a project or file is private, only the user who created the project can view or download the project and files. And finally all projects can be downloaded compressed as a zip file which can then be extracted and run locally. 
 
 If your project provides an API, give some typical functions and/or classes (and their methods) that users would import.:
-It will have webapi endpoints that allow the data to be served dynamically from the Django host. Just use javascript or another tool to send a get request to the
+It will have webapi endpoints that allow the data to be served and modified from a REST api from the Django host. Using javascript or another tool to send a get request to the server.  Below is a snippet from the project_details.html file on how to request a project and its contents as well as how to request the creation of a new project file version.  Other examples of how to use the rest api can be found there.
 
-    url
-        endpoint.
-        ex:
-          $.get("http://dsc.com/api/Projects", function(projects){
-                alert("Projects: " + projects);
-            });
+    GET
+            // request the project itself from the api
+            // fairly inefficent, it could request groups at a time instead of individuals
+            $.get("/djangosourcecontrol/api/project/" + '{{project.id}}')
+               .done(function (data) {
+                   // foreach
+                   ko.utils.arrayForEach(data.projectfiles, function (item) {
+                       $.get("/djangosourcecontrol/api/projectfile/" + item)
+                           .done(function (data) {
+                               var f = new file(data.id, data.projectfile_name, data.projectfile_description, data.public, data.startup, ko.observableArray([]));
+                               ko.utils.arrayForEach(data.projectfileversions, function (item) {
+                                   $.get("/djangosourcecontrol/api/projectfileversion/" + item)
+                                       .done(function (data) {
+                                           var v = new version(data.id, moment(data.created_date), data.text);
+                                           f.versions.push(v)
+                                       })
+                                       .fail(function (data) {
+                                           // get project file version fail
+                                           self.showFailAlert(JSON.stringify(data));
+                                       });
+                               });
+                               self.projectFiles.push(f)
+                           })
+                           .fail(function (data) {
+                               // get project file fail
+                               self.showFailAlert(JSON.stringify(data));
+                           });
+                   });
+               })
+               .fail(function (data) {
+                   // get project fail
+                   self.showFailAlert(JSON.stringify(data));
+               });
+
+    POST
+		$.post("/djangosourcecontrol/api/projectfileversion/", {
+		    "created_date": moment().format('YYYY-MM-DDThh:mm'),
+		    "text": self.text(),
+		    "projectfile": self.selectedFile().id,
+		    'csrfmiddlewaretoken': '{{ csrf_token }}'
+		})
+	       .done(function (data) {
+		   // A successful save will return the new data as a dto.
+		   self.showSaveAlert();
+		   var newVersion = new version(data.id, moment(data.created_date), data.text);
+		   self.selectedFile().versions.push(newVersion);
+		   self.selectedFile().selectedVersion(newVersion);
+	       })
+	       .fail(function (data) {
+		   self.showFailAlert(JSON.stringify(data));
+	       });
+
         Additionally if you wanted to work directly in python you could import
         from the models directory.
         from dsc.models import Project
