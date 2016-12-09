@@ -30,8 +30,7 @@ Quick start
 
 
 
-
-## Setup Virtual enviornment to run build the dist
+### Setup Virtual enviornment to run build the dist
 
 open a terminal and navigate to %where you put the dsc files%/DjangoSourceControl/dsc Run the following commands to create a virtual environment
 
