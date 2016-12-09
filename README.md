@@ -14,44 +14,44 @@ Django Source Control is a website that lets you log in, create public or privat
 Give a script (a sequence of actions, not Python code) of a session a user might have with your project.:
 
     User Story 1:   Register an account
-        1.  Open web browser and navigate to dsc.com (or other url).
-        2.  Select register user
+        1.  Open web browser and navigate to http://127.0.0.1:8000/login/
+        2.  Select register new user
         3.  Pick username and enter password
         3a. If username is already taken, the user will be informed they must pick a new username.
-	optional step 4: Request the site admin to mark the new account as authorized to run code.  Failure to do this step results in only being able to compile projects.
+	optional step 4: Request the site admin to mark the new account as authorized with the can_run_project permission.  Failure to do this step results in only being able to compileand download projects.
 
     User Story 2:  Create public project with public startup file and private module file
-        1.  Open web browser and navigate to dsc.com (or other url).
+        1.  Open web browser and navigate to http://127.0.0.1:8000/login/
         2.  Log in with existing account
         3.  Create a new project, set project name, description, and mark as public
 	4:  Add a new file (#1), set name, description, and mark as private
 	5.  Create a second file (#2), set name, description, mark as startup, and as public
-        6.  Select file #1, enter text into text box and hit save which creates a new version of the file and is marked active
-	7.  Select file #2 enter text into text box to create a new python modules and save which creates a new version of the file and is marked active.  The save triggers a compile and the results are then displayed on the page when the current version is selected. 
-        8. If Admin: Select file #2 and press run, Python script is then executed in a new thread on the server and the results or any exceptions are displayed as a result.
+        6.  Select file #1, enter text into text box and hit save which creates a new version of the file
+	7.  Select file #2 enter text into text box to create a new python modules and save which creates a new version of the file.  The save triggers a compile button to become available, which if clicked will cause the server to compile the code with the results  then displayed to the user. 
+        8. If Admin or has the can_run_project permission: Select file #2 and press run, Python script is then executed in a new thread on the server and the results or any exceptions are displayed as a result.
 	9. Select download as zip, then extract zip file and run locally.
         10.  Repeat steps 6-9 until satisfied.
 
     User Story 3:   View and compile existing project, then run.
-        1.  Open web browser and navigate to dsc.com (or other url).
+        1.  Open web browser and navigate to http://127.0.0.1:8000/login/
         2.  Log in
         3.  Select an existing project previously created by current user
         4.  Select which file to modify
-        5.  Enter text into text box and hit save, which creates a new version of the file and is marked active.  The save triggers a compile and the results are then displayed on the page when the current version is selected.
+        5.  Enter text into text box to create a new python modules and save which creates a new version for the file.  The once a file is saved a compile button to become available, which if clicked will cause the server to compile the code and display the results to the user. 
         6.  Repeat steps 4-5 until satisfied.
-	7a. Press run and view results. 
+	7.  If Admin or has the can_run_project permission: Select startup file and press run, the Python script is then executed in a new thread on the server and the results or any exceptions are displayed as a result.
 
     User Story 4:   View and run existing public project
-        1.  Open web browser and navigate to dsc.com (or other url).
+        1.  Open web browser and navigate to  http://127.0.0.1:8000/login/
         2.  Log in
         3.  Select an existing public project not created by current user
-        4.  Select an existing public file to modify
-        5.  Enter text into text box and hit run, Python script is then executed in a new thread on the server and the results or any exceptions are displayed as a result.
-        6.  Repeat steps 4-5 until satisfied.
-        7.  Save the script.  A new version is then saved along with a timestamp into the database.
+	4.  Select file to view
+	5   Select previous versions of the file to view
+	4.  Download project as zip file retreiving the most recent version of each public file. 
+	5.  Extract zip, modify files then run locally.
 
     User Story 5:   View and run existing project as guest
-        1.  Open web browser and navigate to dsc.com (or other url).
+        1.  Open web browser and navigate to http://127.0.0.1:8000
         2.  Do not log in, continue as guest to have read only access to public files / projects
         3.  Select an existing project public
         4.  Select which file to view
