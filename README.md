@@ -68,57 +68,57 @@ DjangoSourceControl is a website written in Django (https://www.djangoproject.co
 If your project provides an API, give some typical functions and/or classes (and their methods) that users would import.:
 It will have webapi endpoints that allow the data to be served and modified from a REST api from the Django host. Using javascript or another tool to send a get request to the server.  Below is a snippet from the project_details.html file on how to request a project and its contents as well as how to request the creation of a new project file version.  Other examples of how to use the rest api can be found there.
 
-    GET
-            // request the project itself from the api
-            // fairly inefficent, it could request groups at a time instead of individuals
-            $.get("/djangosourcecontrol/api/project/" + '{{project.id}}')
-               .done(function (data) {
-                   // foreach
-                   ko.utils.arrayForEach(data.projectfiles, function (item) {
-                       $.get("/djangosourcecontrol/api/projectfile/" + item)
-                           .done(function (data) {
-                               var f = new file(data.id, data.projectfile_name, data.projectfile_description, data.public, data.startup, ko.observableArray([]));
-                               ko.utils.arrayForEach(data.projectfileversions, function (item) {
-                                   $.get("/djangosourcecontrol/api/projectfileversion/" + item)
-                                       .done(function (data) {
-                                           var v = new version(data.id, moment(data.created_date), data.text);
-                                           f.versions.push(v)
-                                       })
-                                       .fail(function (data) {
-                                           // get project file version fail
-                                           self.showFailAlert(JSON.stringify(data));
-                                       });
-                               });
-                               self.projectFiles.push(f)
-                           })
-                           .fail(function (data) {
-                               // get project file fail
-                               self.showFailAlert(JSON.stringify(data));
-                           });
-                   });
-               })
-               .fail(function (data) {
-                   // get project fail
-                   self.showFailAlert(JSON.stringify(data));
-               });
+	GET
+		// request the project itself from the api
+		// fairly inefficent, it could request groups at a time instead of individuals
+		$.get("/djangosourcecontrol/api/project/" + '{{project.id}}')
+		.done(function (data) {
+		   // foreach
+		   ko.utils.arrayForEach(data.projectfiles, function (item) {
+		       $.get("/djangosourcecontrol/api/projectfile/" + item)
+			   .done(function (data) {
+			       var f = new file(data.id, data.projectfile_name, data.projectfile_description, data.public, data.startup, ko.observableArray([]));
+			       ko.utils.arrayForEach(data.projectfileversions, function (item) {
+				   $.get("/djangosourcecontrol/api/projectfileversion/" + item)
+				       .done(function (data) {
+					   var v = new version(data.id, moment(data.created_date), data.text);
+					   f.versions.push(v)
+				       })
+				       .fail(function (data) {
+					   // get project file version fail
+					   self.showFailAlert(JSON.stringify(data));
+				       });
+			       });
+			       self.projectFiles.push(f)
+			   })
+			   .fail(function (data) {
+			       // get project file fail
+			       self.showFailAlert(JSON.stringify(data));
+			   });
+		   });
+		})
+		.fail(function (data) {
+		   // get project fail
+		   self.showFailAlert(JSON.stringify(data));
+		});
 
-    POST
+	POST
 		$.post("/djangosourcecontrol/api/projectfileversion/", {
 		    "created_date": moment().format('YYYY-MM-DDThh:mm'),
 		    "text": self.text(),
 		    "projectfile": self.selectedFile().id,
 		    'csrfmiddlewaretoken': '{{ csrf_token }}'
 		})
-	       .done(function (data) {
+		.done(function (data) {
 		   // A successful save will return the new data as a dto.
 		   self.showSaveAlert();
 		   var newVersion = new version(data.id, moment(data.created_date), data.text);
 		   self.selectedFile().versions.push(newVersion);
 		   self.selectedFile().selectedVersion(newVersion);
-	       })
-	       .fail(function (data) {
+		})
+		.fail(function (data) {
 		   self.showFailAlert(JSON.stringify(data));
-	       });
+		});
 
 If you wanted to work directly in python using the django built in ORM you could import from the djangosourcecontrol models.
 	EX:
