@@ -120,12 +120,20 @@ It will have webapi endpoints that allow the data to be served and modified from
 		   self.showFailAlert(JSON.stringify(data));
 	       });
 
-Additionally if you wanted to work directly in python you could import
+If you wanted to work directly in python using the django built in ORM you could import from the djangosourcecontrol models.
+	EX:
+		from djangosourcecontrol.djangosourcecontrolmodels import Project
+		from djangosourcecontrol.djangosourcecontroldjangosourcecontrolmodels import ProjectFile
+		from djangosourcecontrol.djangosourcecontrolmodels import ProjectFileVersion
 
-	from the models directory.
-	from dsc.models import Project
-	from dsc.models import ProjectFile
-	from dsc.models import ProjectFileVersion
+Additionally there is a collection of useful python custom methods for checking for authentication on files, projects and version, as well as the usual rest collection of get,set,update but not delete. 
+
+	EX:
+		
+		repo = DSCRepository()
+		pk = 1 #where 1 is the primary key of a project stored in the database
+		project = repo.get_project(pk)
+		files = repo.get
 
 Will your application make use of any non-trivial algorithms? If so,describe them.:
 Allowing project files to be able to include and use source code from each other will be fairly non-trivial. 
@@ -136,7 +144,10 @@ Windows or Linux, cross platform
 If your project is interactive, give some typical user commands.:
 The website will consist of several pages.
 
-http://dsc.com/ - home page, displays a slash screen + logo and a list of actions, like login or continue as guest with warning that it will be read only. It will also display a list the users projects and all of the public projects.
+http://127.0.0.1:8000/ or http://127.0.0.1:8000/home/ - home page - containst a links
+- http://127.0.0.1:8000/home/
+- http://127.0.0.1:8000/djangosourcecontrol/
+- And if superuser: http://127.0.0.1:8000/admin/
       
 Each project in the list will have a summery of what the project is and what files are in it.  Each project has a link to its project page (ex project #1: http://dvc.com/project/1) where the files in that project will be listed.  Each file then will show its name, last modified date, and if the last time it was compiled or executed and the result of that action. Each file will also have a link that allows you to edit that file (ex file #1: http://dcv.com/file/1)
 
