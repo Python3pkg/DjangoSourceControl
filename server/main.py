@@ -4,7 +4,7 @@ import os
     
 def start_server():
     """
-    Start server is the 
+    Start server is the main file for the django web server, it is the startup file for the visual studio project
     """
     os.environ['DJANGO_SETTINGS_MODULE'] = "DjpStudios.settings"
     django.setup()
