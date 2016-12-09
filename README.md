@@ -63,12 +63,12 @@ What other modules will your project use?:
     Django, and django-rest-framework
 
 Describe your project in greater detail. What would you say to someone to get them to use (or buy) your project?:
-DjangoSourceControl is a website written in Django (https://www.djangoproject.com/) with a sqllite3 database created using the built in Django ORM. The purpose of the website is to provide end users the ability to log in to and create a project that will allow the user to manage a collection of python scripts. One file would be marked as the startup file, and would be used when a project is requsted to be ran or compiled.  Both Projects and file can be either public or private.  If a project or file is private, only the user who created the project can view or download the project and files. And finally all projects can be downloaded compressed as a zip file which can then be extracted and run locally. 
+DjangoSourceControl is a website written in Django (https://www.djangoproject.com/) with a sqllite3 database created using Django's ORM. The purpose of the website is to provide end users the ability to log in to and create a project that will allow the user to manage a collection of python scripts. One file would be marked as the startup file, and would be used when a project is requsted to be ran or compiled.  Both Projects and file can be either public or private.  If a project or file is private, only the user who created the project can view or download the project and files. And finally all projects can be downloaded compressed as a zip file which can then be extracted and run locally. 
 
 If your project provides an API, give some typical functions and/or classes (and their methods) that users would import.:
-It will have webapi endpoints that allow the data to be served and modified from a REST api from the Django host. Using javascript or another tool to send a get request to the server.  Below is a snippet from the project_details.html file on how to request a project and its contents as well as how to request the creation of a new project file version.  Other examples of how to use the rest api can be found there.
+It has webapi endpoints that allow data to be served and modified from a restful api hosted by the django server. Using javascript or another tool to send get and post requests to the server to interact with the api.  Below is a snippet from the project_details.html file on how to request a project, files, and versions. Below that is a example of a post method to request a new project file version. 
 
-	GET
+	GET - project, then get all its files, and also all of that files versions. 
 		// request the project itself from the api
 		// fairly inefficent, it could request groups at a time instead of individuals
 		$.get("/djangosourcecontrol/api/project/" + '{{project.id}}')
@@ -102,7 +102,7 @@ It will have webapi endpoints that allow the data to be served and modified from
 		   self.showFailAlert(JSON.stringify(data));
 		});
 
-	POST
+	POST - Create new project file version
 		$.post("/djangosourcecontrol/api/projectfileversion/", {
 		    "created_date": moment().format('YYYY-MM-DDThh:mm'),
 		    "text": self.text(),
