@@ -9,13 +9,13 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='djangosourcecontrol',
-    version='1.0',
+    version='1.1',
     packages=find_packages(),
     include_package_data=True,
     license='gpl-3.0',
-    description='A simple Django app to conduct create Web-based Python projects and files.',
+    description='A simple Django app to conduct create Web-based Python projects and files. Powered by KnockoutJs and django-rest-framework',
     long_description=README,
-    url='http://users.tricity.wsu.edu/~bobl/cpts481/',
+    url='https://github.com/kull2222/DjangoSourceControl/',
     author='Daniel J Pepka',
     author_email='pepkad@wsu.edu',
     classifiers=[
@@ -27,7 +27,7 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
