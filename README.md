@@ -120,11 +120,12 @@ It will have webapi endpoints that allow the data to be served and modified from
 		   self.showFailAlert(JSON.stringify(data));
 	       });
 
-        Additionally if you wanted to work directly in python you could import
-        from the models directory.
-        from dsc.models import Project
-        from dsc.models import ProjectFile
-        from dsc.models import ProjectFileVersion
+Additionally if you wanted to work directly in python you could import
+
+	from the models directory.
+	from dsc.models import Project
+	from dsc.models import ProjectFile
+	from dsc.models import ProjectFileVersion
 
 Will your application make use of any non-trivial algorithms? If so,describe them.:
 Allowing project files to be able to include and use source code from each other will be fairly non-trivial. 
