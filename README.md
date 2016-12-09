@@ -10,20 +10,16 @@ The reccomended method of using django source control is within a python virtual
 open a terminal and navigate to %where you put the dsc files%/DjangoSourceControl/server Run the following commands to create a virtual environment
 
 ### optional steps if you already haven't installed python3
-
 	sudo apt-get install python3
 	sudo apt-get install python3-pip
 
 ### optional update pip
-
 	sudo pip3 install --upgrade pip
 
 ### install virtualenv pip package
-
 	pip3 install virtualenv
 
 ### Make the folder and create our virtualenv
-
 	virtualenv serverenv 
 	source serverenv/bin/activate 
 	pip3 install django 
@@ -31,11 +27,9 @@ open a terminal and navigate to %where you put the dsc files%/DjangoSourceContro
 	pip3 install djangosourcecontrol
 
 ### Finally run the server
-
 	python3 manage.py runserver
 
 ### Open up a web browser and navigate to
-
 	http://127.0.0.1:8000/
 
 Note: The test server comes with three sample users.
