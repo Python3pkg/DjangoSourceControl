@@ -60,18 +60,17 @@ The registration page where new users are created with the can_add_permission by
 The project list page. Displays all public projects and projects created by the logged in user.
 Note: superuser can see all projects
 Note: users with the can_add_project permission, have an additonal button which spawns a modal to create new projects.
-http://127.0.0.1:8000/djangosourcecontrol/PK/
+http://127.0.0.1:8000/djangosourcecontrol/PK/ where PK is an integer that represents a projects primary key.
 
-PK is an integer that represents a projects primary key.
-Projects display contain a collection of files as well as each file containing a collection of versions. This page allows for the creation of new files, and new versions. The project and files can each be marked as private, limits visibility to only the owner of the project and superusers.
-Each file may have the most recent version compiled and the results displayed.
-Each project may mark one file as the startup, which if the user has the can_run_project permission can have its startup file executed and the results displayed.
+Projects the project details page listed at http://127.0.0.1:8000/djangosourcecontrol/PK/ displays a collection of files as dropdown which lists each files versions. This page allows for the creation and renaming of new/existing files, the creation of new file versions and the renaming of projects and their descriptions. Project and files can each be marked as private, which limits visibility to only the owner of the project and superusers.
+
+Each file may have the most recent version compiled and the results displayed.  
+
+Each project may mark one file as the startup.  Only the startup file is allowed to be run on the server. 
 
 ### http://127.0.0.1:8000/admin/
 The admin page allows manual manipulation of the django users, groups, projects, files, and versions.
 NOTE: There is currently no way to remove a project, file, or version from the public controls. Only a superuser may remove project, file, or versions and it must be done through the admin pages.
-
-
 
 
 ## Project Proposal:
