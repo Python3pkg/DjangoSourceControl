@@ -18,7 +18,7 @@ Give a script (a sequence of actions, not Python code) of a session a user might
         2.  Select register new user
         3.  Pick username and enter password
         3a. If username is already taken, the user will be informed they must pick a new username.
-	optional step 4: Request the site admin to mark the new account as authorized with the can_run_project permission.  Failure to do this step results in only being able to compileand download projects.
+	optional step 4. Request the site admin to mark the new account as authorized with the can_run_project permission.  Failure to do this step results in only being able to compileand download projects.
 
     User Story 2:  Create public project with public startup file and private module file
         1.  Open web browser and navigate to http://127.0.0.1:8000/login/
@@ -46,7 +46,7 @@ Give a script (a sequence of actions, not Python code) of a session a user might
         2.  Log in
         3.  Select an existing public project not created by current user
 	4.  Select file to view
-	5   Select previous versions of the file to view
+	5   Select previous version of the file to view
 	4.  Download project as zip file retreiving the most recent version of each public file. 
 	5.  Extract zip, modify files then run locally.
 
@@ -59,10 +59,13 @@ Give a script (a sequence of actions, not Python code) of a session a user might
         6.  Repeat steps 4-5 until satisfied.
 	7.  Download as zip file, extract and then run. 
 
+
 What other modules will your project use?:
     Django, and django-rest-framework
 
+
 Describe your project in greater detail. What would you say to someone to get them to use (or buy) your project?:
+
 DjangoSourceControl is a website written in Django (https://www.djangoproject.com/) with a sqllite3 database created using Django's ORM. The purpose of the website is to provide end users the ability to log in to and create a project that will allow the user to manage a collection of python scripts. One file would be marked as the startup file, and would be used when a project is requsted to be ran or compiled.  Both Projects and file can be either public or private.  If a project or file is private, only the user who created the project can view or download the project and files. And finally all projects can be downloaded compressed as a zip file which can then be extracted and run locally. 
 
 If your project provides an API, give some typical functions and/or classes (and their methods) that users would import.:
@@ -133,7 +136,4 @@ Additionally there is a collection of useful python custom methods for checking 
 		repo = DSCRepository()
 		pk = 1 #where 1 is the primary key of a project stored in the database
 		project = repo.get_project(pk)
-		files = repo.get
 
-Will your application make use of any non-trivial algorithms? If so,describe them.:
-Allowing project files to be able to include and use source code from each other will be fairly non-trivial. 
