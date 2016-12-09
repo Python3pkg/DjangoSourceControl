@@ -28,3 +28,28 @@ Quick start
 
 5. Visit http://127.0.0.1:8000/djangosourcecontrol/ to start creating projects.
 
+
+
+
+## Setup Virtual enviornment to run build the dist
+
+open a terminal and navigate to %where you put the dsc files%/DjangoSourceControl/dsc Run the following commands to create a virtual environment
+
+### optional steps if you already haven't installed python3
+	sudo apt-get install python3
+	sudo apt-get install python3-pip
+
+### optional update pip
+	sudo pip3 install --upgrade pip
+
+### install virtualenv pip package
+	pip3 install virtualenv
+
+### Make the folder and create our virtualenv
+	virtualenv distenv 
+	source distenv/bin/activate 
+	pip3 install django 
+	pip3 install djangorestframework 
+    
+### Run setup.py to build the dist
+    python3 setup.py sdist
