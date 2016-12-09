@@ -5,7 +5,7 @@ DjangoSourceControl
 DjangoSourceControl is a simple Django app to create Web-based Python files and projects.
 For each project, users can add, update, and create python projects, files, and versions.
 
-Detailed documentation is in the "docs" directory.
+Note: Django source control has a unit test suite which can be ran by 'python manage.py test' to run the repo and api authentication tests.
 
 Quick start
 -----------
@@ -27,3 +27,4 @@ Quick start
    to assign the can_add_project, and/or the can_run_project to user.
 
 5. Visit http://127.0.0.1:8000/djangosourcecontrol/ to start creating projects.
+
