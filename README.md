@@ -1,17 +1,86 @@
 # DjangoSourceControl
 DjangoSourceControl is a simple Django app to create Web-based Python files and projects.
 
-Project Proposal:
-------------------------------
-Author: Daniel Pepka
+NOTE: DjangoSourceControl was developed in windows using visual studio. However it works perfectly well under linux as well.
 
-Project Name: DjangoSourceControl
+The reccomended method of using django source control is within a python virtual environment. Below are instructions on how to setup a virtual enviornment and then run the django test server for djangosourcecontrol
+
+## Setup Virtual enviornment to run the test server
+
+open a terminal and navigate to %where you put the dsc files%/DjangoSourceControl/server Run the following commands to create a virtual environment
+
+### optional steps if you already haven't installed python3
+
+	sudo apt-get install python3 sudo apt-get install python3-pip
+
+### optional update pip
+
+	sudo pip3 install --upgrade pip
+
+### install virtualenv pip package
+
+	pip3 install virtualenv
+
+### Make the folder and create our virtualenv
+
+	virtualenv serverenv source serverenv/bin/activate pip3 install django pip3 install djangorestframework pip3 install djangosourcecontrol
+
+### Finally run the server
+
+	python3 manage.py runserver
+
+### Open up a web browser and navigate to
+
+	http://127.0.0.1:8000/
+
+Note: The test server comes with three sample users.
+
+username:passwords are listed here: 
+admin:jello 
+daniel:jello 
+jamie:jello
+
+## The site consists of serveral pages:
+
+http://127.0.0.1:8000/ or http://127.0.0.1:8000/home/
+
+The home page, contains different links depending on superuser status.
+http://127.0.0.1:8000/login/
+
+The login page, contains a link to the register page
+http://127.0.0.1:8000/home/register
+
+The registration page where new users are created with the can_add_permission by default
+http://127.0.0.1:8000/djangosourcecontrol/
+
+The project list page. Displays all public projects and projects created by the logged in user.
+Note: superuser can see all projects
+Note: users with the can_add_project permission, have an additonal button which spawns a modal to create new projects.
+http://127.0.0.1:8000/djangosourcecontrol/PK/
+
+PK is an integer that represents a projects primary key.
+Projects display contain a collection of files as well as each file containing a collection of versions. This page allows for the creation of new files, and new versions. The project and files can each be marked as private, limits visibility to only the owner of the project and superusers.
+Each file may have the most recent version compiled and the results displayed.
+Each project may mark one file as the startup, which if the user has the can_run_project permission can have its startup file executed and the results displayed.
+http://127.0.0.1:8000/admin/
+
+The admin page allows manual manipulation of the django users, groups, projects, files, and versions.
+NOTE: There is currently no way to remove a project, file, or version from the public controls. Only a superuser may remove project, file, or versions and it must be done through the admin pages.
+
+
+
+
+## Project Proposal:
+------------------------------
+### Author: Daniel Pepka
+
+### Project Name: DjangoSourceControl
 		
-Brief Description:
+### Brief Description:
 
 Django Source Control is a website that lets you log in, create public or private python projects which are collections of files.  Each time you save a file a new version is created which is then compiled and displaying any errors. Each version is retained preserving a history of each previous save. Then using the web page you can revert to a previous version at any time. The project files may be download as zip file, and if authorized, you can run the script directly on the server.
 
-Give a script (a sequence of actions, not Python code) of a session a user might have with your project.:
+### Give a script (a sequence of actions, not Python code) of a session a user might have with your project.:
 
     User Story 1:   Register an account
         1.  Open web browser and navigate to http://127.0.0.1:8000/login/
@@ -60,15 +129,15 @@ Give a script (a sequence of actions, not Python code) of a session a user might
 	7.  Download as zip file, extract and then run. 
 
 
-What other modules will your project use?:
+### What other modules will your project use?:
     Django, and django-rest-framework
 
 
-Describe your project in greater detail. What would you say to someone to get them to use (or buy) your project?:
+### Describe your project in greater detail. What would you say to someone to get them to use (or buy) your project?:
 
 DjangoSourceControl is a website written in Django (https://www.djangoproject.com/) with a sqllite3 database created using Django's ORM. The purpose of the website is to provide end users the ability to log in to and create a project that will allow the user to manage a collection of python scripts. One file would be marked as the startup file, and would be used when a project is requsted to be ran or compiled.  Both Projects and file can be either public or private.  If a project or file is private, only the user who created the project can view or download the project and files. And finally all projects can be downloaded compressed as a zip file which can then be extracted and run locally. 
 
-If your project provides an API, give some typical functions and/or classes (and their methods) that users would import.:
+### If your project provides an API, give some typical functions and/or classes (and their methods) that users would import.:
 It has webapi endpoints that allow data to be served and modified from a restful api hosted by the django server. Using javascript or another tool to send get and post requests to the server to interact with the api.  Below is a snippet from the project_details.html file on how to request a project, files, and versions. Below that is a example of a post method to request a new project file version. 
 
 	GET - project, then get all its files, and also all of that files versions. 
