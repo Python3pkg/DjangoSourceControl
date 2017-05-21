@@ -98,7 +98,7 @@ class DSCRepository():
             oldcwd = os.getcwd()
             os.chdir(root)
             for file in files:
-                print(root, dirs, file)
+                print((root, dirs, file))
                 ziph.write(file)
             os.chdir(oldcwd)
 
@@ -151,7 +151,7 @@ class DSCRepository():
                             the_file.write(version.text)
                             the_file.close()
         except Exception as ex:
-            print("EXCEPTION:",ex)
+            print(("EXCEPTION:",ex))
             #raise ex
 
         return projectPath

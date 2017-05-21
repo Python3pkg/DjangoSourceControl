@@ -11,10 +11,10 @@ def logDjangoSourceControlPopulate(view_func):
     """
     def _wrapped_view_func(*args, **kwargs): 
         try:
-            print("DjangoSourceControl:",args[1:],kwargs)  
+            print(("DjangoSourceControl:",args[1:],kwargs))  
             return view_func(*args, **kwargs)
         except Exception as ex: 
-            print("DjangoSourceControl - fail:", ex)
+            print(("DjangoSourceControl - fail:", ex))
             return view_func(*args, **kwargs)
     return _wrapped_view_func
 
